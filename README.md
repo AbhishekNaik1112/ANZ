@@ -1,8 +1,8 @@
-# ANZ - Secure Authentication Microservices
+# ANZ - Authentication and Authorization Microservices
 
-## Technical Overview
+## Project Overview
 
-A production-grade authentication system built with:
+An implementation of authentication and authorization microservices built with:
 
 - **Auth Service**: Django + DRF (REST API)
 - **Token Service**: FastAPI for JWT operations
@@ -19,7 +19,6 @@ A production-grade authentication system built with:
 
 - **Security**:
   - Password hashing with bcrypt
-  - Basic rate limiting
   - SSL database connections
 
 - **Database**:
