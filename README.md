@@ -1,19 +1,36 @@
-# ANZ - Authentication & Authorization Microservices
+# ANZ - Secure Authentication Microservices
 
+## Technical Overview
 
+A production-grade authentication system built with:
 
-A microservice-based authentication and authorization system consisting of:
-- Auth Service (Django backend)
-- Token Service (Python)
-- React Frontend(Admin Dashboard)
+- **Auth Service**: Django + DRF (REST API)
+- **Token Service**: FastAPI for JWT operations
+- **Frontend**: React + TypeScript 
+- **Database**: PostgreSQL with SSL
+- **Cache**: Redis for session management
 
-## Features     
+## Key Technical Features
 
-- User registration and login
-- JWT token authentication
-- Role-based access control
-- Admin dashboard
-- Dockerized deployment
+- **JWT Authentication**:
+  - Access & Refresh tokens  
+  - HS256 signed tokens
+  - Redis session validation
+
+- **Security**:
+  - Password hashing with bcrypt
+  - Basic rate limiting
+  - SSL database connections
+
+- **Database**:
+  - PostgreSQL user/permission storage
+  - Redis for active session tracking
+  - Connection pooling
+
+- **Architecture**:
+  - Microservice design
+  - Docker containers
+  - REST APIs
 
 ## Architecture Overview
 
