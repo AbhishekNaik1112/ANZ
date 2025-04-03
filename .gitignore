@@ -1,11 +1,12 @@
-
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
-
+# C extensions
 *.so
 
+# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -24,12 +25,15 @@ wheels/
 *.egg
 MANIFEST
 
+# PyInstaller
 *.manifest
 *.spec
 
+# Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
 
+# Unit test / coverage reports
 htmlcov/
 .tox/
 .nox/
@@ -39,6 +43,7 @@ htmlcov/
 .hypothesis/
 .pytest_cache/
 
+# Environments
 .env
 .venv
 env/
@@ -59,3 +64,8 @@ venv.bak/
 
 # Logs
 *.log
+
+ca.pem
+fef.md
+
+.vscode
