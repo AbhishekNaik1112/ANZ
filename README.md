@@ -79,13 +79,24 @@ Create `.env` files in:
 
 Sample `.env` for Django:
 ```env
-SECRET_KEY=your-secret-key
-DEBUG=True
-DB_NAME=postgres
-DB_USER=postgres
-DB_PASSWORD=postgres
-DB_HOST=db
-DB_PORT=5432
+# Database Configuration
+POSTGRES_DB=
+POSTGRES_USER=
+# Aiven-generated password
+POSTGRES_PASSWORD= 
+POSTGRES_HOST=
+POSTGRES_PORT=
+# SSL connection required
+POSTGRES_SSLMODE=
+
+# Django Configuration
+DJANGO_SECRET_KEY=
+# Set to False in production
+DEBUG=  
+
+# Application Settings
+# For token service
+JWT_SECRET_KEY=
 ```
 
 3. Build and run with Docker:
