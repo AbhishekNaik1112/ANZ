@@ -83,7 +83,7 @@ const AdminDashboard: React.FC = () => {
     {
       title: 'Name',
       key: 'name',
-      render: (text: string, record: User) => `${record.first_name} ${record.last_name}`,
+      render: (_: any, record: User) => `${record.first_name} ${record.last_name}`,
     },
     {
       title: 'Role',
@@ -93,15 +93,19 @@ const AdminDashboard: React.FC = () => {
     {
       title: 'Actions',
       key: 'actions',
-      render: (text: string, record: User) => (
+      render: (_: any, record: User) => (
         <Space size="middle">
           <Button type="link" onClick={() => {
             setEditingUser(record);
+            // Find the role object that matches the user's role name
+            const userRole = roles.find((r: Role) => r.name === record.role);
+
             form.setFieldsValue({
               email: record.email,
               first_name: record.first_name,
               last_name: record.last_name,
-              role: roles.find((r: Role) => r.name === record.role)?.id
+              role: userRole?.id,
+              password: '' // Clear password field when editing
             });
             setIsModalVisible(true);
           }}>Edit</Button>
@@ -116,7 +120,7 @@ const AdminDashboard: React.FC = () => {
       <h2 className="page-title">Admin Dashboard</h2>
       <Card className="mb-16">
         <div className="button-group">
-          <Button 
+          <Button
             className="primary"
             icon={<PlusOutlined />}
             onClick={() => {
@@ -129,16 +133,16 @@ const AdminDashboard: React.FC = () => {
           </Button>
         </div>
 
-        <Table 
-          columns={columns} 
-          dataSource={processedUsers} 
+        <Table
+          columns={columns}
+          dataSource={processedUsers}
           rowKey="id"
           bordered
         />
 
         <Modal
-          title="Create New User"
-          visible={isModalVisible}
+          title={editingUser ? "Edit User" : "Create New User"}
+          open={isModalVisible}
           onCancel={() => setIsModalVisible(false)}
           footer={null}
         >
@@ -158,15 +162,14 @@ const AdminDashboard: React.FC = () => {
               <Input prefix={<UserOutlined />} />
             </Form.Item>
 
-            {!editingUser && (
-              <Form.Item
-                name="password"
-                label="Password"
-                rules={[{ required: !editingUser, message: 'Please input password!' }]}
-              >
-                <Input.Password prefix={<LockOutlined />} />
-              </Form.Item>
-            )}
+            <Form.Item
+              name="password"
+              label="Password"
+              rules={[{ required: !editingUser, message: 'Please input password!' }]}
+              extra={editingUser ? "Leave blank to keep current password" : ""}
+            >
+              <Input.Password prefix={<LockOutlined />} />
+            </Form.Item>
 
             <Form.Item
               name="first_name"
@@ -188,7 +191,6 @@ const AdminDashboard: React.FC = () => {
               name="role"
               label="Role"
               rules={[{ required: true, message: 'Please select role!' }]}
-              initialValue={roles.length > 0 ? roles[0].id : undefined}
             >
               <Select>
                 {roles.map((role: Role) => (
@@ -201,7 +203,7 @@ const AdminDashboard: React.FC = () => {
 
             <Form.Item>
               <Button type="primary" htmlType="submit" block>
-                Create User
+                {editingUser ? "Update User" : "Create User"}
               </Button>
             </Form.Item>
           </Form>
